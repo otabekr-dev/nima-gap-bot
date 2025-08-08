@@ -2,10 +2,15 @@ from telegram import Update
 from telegram.ext import CallbackContext
 from keyboards.language import get_language_keyboard
 from keyboards.register import get_register_keyboard
+from services import db
+from middleware.check_chat_member import check_group_membership
 
 
+@check_group_membership
 def start(update: Update, context: CallbackContext):
     user = update.effective_user
+
+    db.create_user(user.id)
 
     update.message.reply_html(
         text=f"Assalomu Alaykum <b>{user.full_name}</b>! Nima Gap Botga hush kelibsiz.",
@@ -20,4 +25,3 @@ def start(update: Update, context: CallbackContext):
         text=f"Ro'yxatdan o'tish",
         reply_markup=get_register_keyboard()
     )
-

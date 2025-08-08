@@ -6,10 +6,12 @@ from telegram.ext import (
     ConversationHandler,
     MessageHandler,
     Filters,
+    CallbackQueryHandler,
 )
 from handlers.start import start
 from handlers.cancel import cancel
 from handlers.register import start_register, set_name, set_gender, set_location, set_number
+from handlers.profile import set_language
 
 
 def main() -> None:
@@ -22,6 +24,9 @@ def main() -> None:
 
     # Message Handlers
     # dispatcher.add_handler(MessageHandler(Filters.regex("^(Bosh sahifa)$"), ))
+
+    # Callback Query Handlers
+    dispatcher.add_handler(CallbackQueryHandler(set_language, pattern='lang:'))
 
     # Conversation Handlers
     conv_handler = ConversationHandler(
