@@ -39,7 +39,8 @@ def settings(update: Update, context: CallbackContext):
                 [KeyboardButton("Telefon raqingizni ozgartish")],
                 [KeyboardButton("Orqaga")],
             ]
-        )
+        ),
+        reply_to_message_id=update.message.message_id
     )
 
 
