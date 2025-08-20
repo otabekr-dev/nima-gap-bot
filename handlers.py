@@ -1,0 +1,30 @@
+from telegram import Update, ParseMode, ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
+from telegram.ext import CallbackContext
+
+
+def start(update: Update, context: CallbackContext):
+    user = update.effective_user
+
+    update.message.reply_text(
+        text=f'Assalomu alaykum *{user.first_name}*',
+        parse_mode=ParseMode.MARKDOWN_V2,
+        reply_markup=ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton("Buyurtmalar berish", web_app=WebAppInfo("https://kun.uz"))
+                ],
+                [KeyboardButton("Buyurtmalarim"), KeyboardButton("Sozlamalar")],
+                [KeyboardButton("Biz haqimizda"), KeyboardButton("Fikr qoldirish")],
+                [
+                    KeyboardButton("Contact Yuborish", request_contact=True),
+                    KeyboardButton("Lokatsiya Yuborish", request_location=True)
+                ]
+            ],
+            resize_keyboard=True,
+            # one_time_keyboard=True
+        )
+    )
+
+
+def order(update: Update, context: CallbackContext):
+    update.message.reply_text("Sizda hali birorta ham buyurtma yo`q")
