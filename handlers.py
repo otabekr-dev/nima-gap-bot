@@ -28,3 +28,28 @@ def start(update: Update, context: CallbackContext):
 
 def order(update: Update, context: CallbackContext):
     update.message.reply_text("Sizda hali birorta ham buyurtma yo`q")
+
+
+def settings(update: Update, context: CallbackContext):
+    update.message.reply_text(
+        "⚙️ Sozlamalar",
+        reply_markup=ReplyKeyboardMarkup(
+            keyboard=[
+                [KeyboardButton("Tilni o'zgartish")],
+                [KeyboardButton("Telefon raqingizni ozgartish")],
+                [KeyboardButton("Orqaga")],
+            ]
+        )
+    )
+
+
+def contact(update: Update, context: CallbackContext):
+    update.message.reply_text(
+        "Telefon raqamni ozgartish",
+        reply_markup=ReplyKeyboardMarkup(
+            keyboard=[
+                [KeyboardButton("Mening raqamim", request_contact=True)],
+                [KeyboardButton("Orqaga")],
+            ]
+        )
+    )
