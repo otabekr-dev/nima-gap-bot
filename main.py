@@ -14,6 +14,7 @@ def main() -> None:
     dispatcher.add_handler(MessageHandler(Filters.text("Buyurtmalarim"), handlers.order))
     dispatcher.add_handler(MessageHandler(Filters.text("Sozlamalar"), handlers.settings))
     dispatcher.add_handler(MessageHandler(Filters.text("Telefon raqingizni ozgartish"), handlers.contact))
+    dispatcher.add_handler(MessageHandler(Filters.text("Orqaga"), handlers.back))
 
     updater.start_polling()
     updater.idle()

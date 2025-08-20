@@ -53,3 +53,7 @@ def contact(update: Update, context: CallbackContext):
             ]
         )
     )
+
+
+def back(update: Update, context: CallbackContext):
+    start(update, context)
