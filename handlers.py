@@ -1,4 +1,4 @@
-from telegram import Update, ParseMode, ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
+from telegram import Update, ParseMode, ReplyKeyboardMarkup, KeyboardButton, WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext
 
 
@@ -57,3 +57,30 @@ def contact(update: Update, context: CallbackContext):
 
 def back(update: Update, context: CallbackContext):
     start(update, context)
+
+
+def set_language(update: Update, context: CallbackContext):
+    update.message.reply_text(
+        "Tilni tanlang",
+        reply_markup=InlineKeyboardMarkup(
+            inline_keyboard=[
+                [InlineKeyboardButton("Uzbek", callback_data="language:uz")],
+                [InlineKeyboardButton("English", callback_data="language:en")],
+                [InlineKeyboardButton("kanalga azo boling", url="https://t.me/+G-MNQt28Fek2MzFi")]
+            ]
+        )
+    )
+
+
+def choose_language(update: Update, context: CallbackContext):
+    data = update.callback_query.data
+
+    langs = {
+        'uz': "O'zbek",
+        'en': "ingliz"
+    }
+
+    _, lan = data.split(":")
+
+    update.callback_query.message.reply_text(f"siz {langs[lan]} tilini tanladingiz")
+
