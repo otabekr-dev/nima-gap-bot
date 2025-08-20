@@ -1,4 +1,4 @@
-from telegram import Update, ParseMode, ReplyKeyboardMarkup, KeyboardButton, WebAppInfo
+from telegram import Update, ParseMode, ReplyKeyboardMarkup, KeyboardButton, WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext
 
 
@@ -6,8 +6,8 @@ def start(update: Update, context: CallbackContext):
     user = update.effective_user
 
     update.message.reply_text(
-        text=f'Assalomu alaykum <b>{user.first_name}<b>',
-        parse_mode=ParseMode.HTML,
+        text=f'Assalomu alaykum *{user.first_name}*',
+        parse_mode=ParseMode.MARKDOWN_V2,
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
@@ -28,6 +28,7 @@ def start(update: Update, context: CallbackContext):
 
 def order(update: Update, context: CallbackContext):
     update.message.reply_text("Sizda hali birorta ham buyurtma yo`q")
+
 
 def settings(update: Update, context: CallbackContext):
     update.message.reply_text(
@@ -66,7 +67,7 @@ def set_language(update: Update, context: CallbackContext):
             inline_keyboard=[
                 [InlineKeyboardButton("Uzbek", callback_data="language:uz")],
                 [InlineKeyboardButton("English", callback_data="language:en")],
-                [InlineKeyboardButton("kanalga azo boling", url="https://www.youtube.com/@nmagap")]
+                [InlineKeyboardButton("kanalga azo boling", url="https://t.me/+G-MNQt28Fek2MzFi")]
             ]
         )
     )
@@ -83,3 +84,4 @@ def choose_language(update: Update, context: CallbackContext):
     _, lan = data.split(":")
 
     update.callback_query.message.reply_text(f"siz {langs[lan]} tilini tanladingiz")
+
